@@ -1,0 +1,314 @@
+--[[
+➖➖➖➖ MoonCheat Show ➖➖➖➖
+MoonCheat Beta
+Version 1
+Yes Work
+Developer @dcuky134 in Roblox
+➖➖➖➖ MoonCheat Credits ➖➖➖➖
+Scripter @dcuky134 and RobloxUIRemade
+UI Lib by Sirios (https://docs.sirius.menu/rayfield/interaction/interactive-elements)
+--]]
+print("➖➖➖➖ MoonCheat Loader ➖➖➖➖")
+print("MoonCheat has been Executed by ")
+
+function Raise()
+    local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
+
+    local Window = Rayfield:CreateWindow({
+        Name = "MoonCheat - Client",
+        LoadingTitle = "Loading",
+        LoadingSubtitle = "by @dcuky134",
+        ConfigurationSaving = {
+            Enabled = true,
+            FolderName = "MoonCheatFolder", -- Create a custom folder for your hub/game
+            FileName = "MoonCheat"
+        },
+        Discord = {
+            Enabled = false,
+            Invite = "nolinkfornow", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+            RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        },
+        KeySystem = false, -- Set this to true to use our key system
+        KeySettings = {
+            Title = "Key System",
+            Subtitle = "Get Key to Unlock MoonCheat v1",
+            Note = "1 Linkversite",
+            FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+            SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+            GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+            Key = {"HelloWorld"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+        }
+    })
+
+    local HomeTab = Window:CreateTab("Home", 17607228816)
+
+    HomeTab:CreateSection("Home / Basics")
+
+    HomeTab:CreateButton({
+        Name = "Goto Floppa",
+        Callback = function()
+            local flop = game:GetService("Workspace"):FindFirstChild("Floppa")
+            local chr = game.Players.LocalPlayer.Character
+
+            if flop and chr then
+                chr:WaitForChild("HumanoidRootPart").CFrame = flop:WaitForChild("HumanoidRootPart").CFrame
+            else
+                Rayfield:Notify({
+                    Title = "MoonCheat",
+                    Content = "Error: Floppa not Found",
+                    Duration = 6.5,
+                    Image = 17607219051,
+                    Actions = {
+                        Ignore = {
+                            Name = "Okay!",
+                            Callback = function() end
+                        }
+                    }
+                })
+            end
+        end
+    })
+
+    HomeTab:CreateButton({
+        Name = "Goto Home",
+        Callback = function()
+            local rug = game:GetService("Workspace"):FindFirstChild("Key Parts").Rug
+            local chr = game.Players.LocalPlayer.Character
+
+            if rug and chr then
+                chr:WaitForChild("HumanoidRootPart").CFrame = rug.CFrame
+            else
+                Rayfield:Notify({
+                    Title = "MoonCheat",
+                    Content = "Error: Rug not Found",
+                    Duration = 6.5,
+                    Image = 17607219051,
+                    Actions = {
+                        Ignore = {
+                            Name = "Okay!",
+                            Callback = function() end
+                        }
+                    }
+                })
+            end
+        end
+    })
+
+    local FarmTab = Window:CreateTab("Farm", 17607640514)
+
+    FarmTab:CreateSection("Farms")
+
+    FarmTab:CreateToggle({
+        Name = "Auto Click [Work in Solara Exec]",
+        CurrentValue = false,
+        Flag = "Toggle1",
+        Callback = function(Value)
+            getgenv().GG = Value
+            while GG do
+                wait()
+                local flop = game:GetService("Workspace"):FindFirstChild("Floppa")
+
+                if flop then
+                    pcall(function()
+                        fireclickdetector(game:GetService("Workspace").Floppa.ClickDetector)
+                        local babyFlop = game:GetService("Workspace"):FindFirstChild("Baby Floppa")
+                        if babyFlop then
+                            fireclickdetector(babyFlop.ClickDetector)
+                        end
+                    end)
+                else
+                    Rayfield:Notify({
+                        Title = "MoonCheat",
+                        Content = "Error: Floppa not Found",
+                        Duration = 6.5,
+                        Image = 17607219051,
+                        Actions = {
+                            Ignore = {
+                                Name = "Okay!",
+                                Callback = function() end
+                            }
+                        }
+                    })
+                end
+            end
+        end
+    })
+
+    FarmTab:CreateToggle({
+        Name = "Auto Collect Money",
+        CurrentValue = false,
+        Flag = "Toggle2",
+        Callback = function(Value1)
+            getgenv().GG2 = Value1
+            while GG2 do
+                wait()
+                firetouchinterest(game.Workspace:WaitForChild("Money"), game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), 0)
+            end
+        end
+    })
+
+    FarmTab:CreateToggle({
+        Name = "Auto Poop",
+        CurrentValue = false,
+        Flag = "Toggle3",
+        Callback = function(Value2)
+            getgenv().GG3 = Value2
+            while GG3 do
+                wait()
+                local vim = game:GetService("VirtualInputManager")
+                vim:SendKeyEvent(true, "E", false, game)
+                local poop = game.Workspace["Key Parts"]["Litter Box"]:FindFirstChild("Poop")
+                if poop then
+                    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = poop:FindFirstChild("PoopPart").CFrame
+                end
+            end
+        end
+    })
+
+    FarmTab:CreateToggle({
+        Name = "Auto Poop Home [Not Working]",
+        CurrentValue = false,
+        Flag = "Toggle5",
+        Callback = function(Value4)
+            getgenv().GG99 = Value4
+            while GG99 do
+                wait()
+                local vim = game:GetService("VirtualInputManager")
+                vim:SendKeyEvent(true, "E", false, game)
+                local poops = game.Workspace:FindFirstChild("Poop").PoopPart
+                if poops then
+                    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = tostring(poop.CFrame)
+                end
+            end
+        end
+    })
+
+    FarmTab:CreateToggle({
+        Name = "Auto Happy",
+        CurrentValue = false,
+        Flag = "Toggle4",
+        Callback = function(Value3)
+            getgenv().GG4 = Value3
+            while GG4 do
+                wait()
+                local flop = game:GetService("Workspace"):FindFirstChild("Floppa")
+                local chr = game.Players.LocalPlayer.Character
+
+                if flop and chr then
+                    local vim = game:GetService("VirtualInputManager")
+                    vim:SendKeyEvent(true, "E", false, game)
+                    chr:WaitForChild("HumanoidRootPart").CFrame = flop:WaitForChild("HumanoidRootPart").CFrame
+                else
+                    Rayfield:Notify({
+                        Title = "MoonCheat",
+                        Content = "Error: Floppa not Found",
+                        Duration = 6.5,
+                        Image = 17607219051,
+                        Actions = {
+                            Ignore = {
+                                Name = "Okay!",
+                                Callback = function() end
+                            }
+                        }
+                    })
+                end
+            end
+        end
+    })
+
+local MeTab = Window:CreateTab("Me", 17618152092)
+
+MeTab:CreateSection("Me")
+
+local Slider = MeTab:CreateSlider({
+   Name = "Walk Speed",
+   Range = {0, 500},
+   Increment = 10,
+   Suffix = "Walk Speed",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(SliderValue)
+   game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed == SliderValue
+   end,
+})
+
+local Slider = MeTab:CreateSlider({
+   Name = "Jump Power",
+   Range = {0, 500},
+   Increment = 10,
+   Suffix = "Jump power",
+   CurrentValue = 16,
+   Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(SliderValue1)
+   game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").JumpPower == SliderValue1
+   end,
+})
+
+end
+
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
+local MarketplaceService = game:GetService("MarketplaceService")
+local PlaceId = game.PlaceId
+local PlaceName = MarketplaceService:GetProductInfo(PlaceId).Name
+
+local Window = Rayfield:CreateWindow({
+    Name = "MoonCheat V.1",
+    LoadingTitle = "Loading",
+    LoadingSubtitle = "by @dcuky134",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "MoonCheatFolder", -- Create a custom folder for your hub/game
+        FileName = "MoonCheat"
+    },
+    Discord = {
+        Enabled = false,
+        Invite = "nolinkfornow", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+        RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    },
+    KeySystem = true, -- Set this to true to use our key system
+setclipboard("https://pastebin.com/raw/UpU3RBtK")
+    KeySettings = {
+        Title = "Key System",
+        Subtitle = "Get Key to Unlock MoonCheat",
+        Note = "One Pastebin only, Link Copied!",
+        FileName = "Key_MoonCheatTest", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+        SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+        GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+        Key = {"Key_1039"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+    }
+})
+
+local HomeTab = Window:CreateTab("Home", 17607228816)
+
+HomeTab:CreateSection("Home - Hub")
+
+Rayfield:Notify({
+    Title = "MoonCheat",
+    Content = "MoonCheat Loaded in " .. PlaceName,
+    Duration = 6.5,
+    Image = 17607219051,
+    Actions = {
+        Ignore = {
+            Name = "Close",
+            Callback = function() end
+        }
+    }
+})
+
+HomeTab:CreateButton({
+    Name = "Open Raise a Floppa 2",
+    Callback = function()
+        Raise()
+    end
+})
+
+local STab = Window:CreateTab("Default Scripts", 17618233397)
+
+STab:CreateSection("Free Scripts")
+
+STab:CreateButton({
+    Name = "[Safe] Infinite Yield",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    end
+})
