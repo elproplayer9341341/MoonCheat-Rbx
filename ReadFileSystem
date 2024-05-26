@@ -143,6 +143,7 @@ function Raise()
             while GG2 do
                 wait()
                 firetouchinterest(game.Workspace:WaitForChild("Money"), game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), 0)
+                firetouchinterest(game.Workspace:WaitForChild("Money"), game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), 1)
             end
         end
     })
@@ -177,7 +178,7 @@ function Raise()
                 vim:SendKeyEvent(true, "E", false, game)
                 local poops = game.Workspace:FindFirstChild("Poop").PoopPart
                 if poops then
-                    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = tostring(poop.CFrame)
+                    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = poops.CFrame
                 end
             end
         end
@@ -216,34 +217,33 @@ function Raise()
         end
     })
 
-local MeTab = Window:CreateTab("Me", 17618152092)
+    local MeTab = Window:CreateTab("Me", 17618152092)
 
-MeTab:CreateSection("Me")
+    MeTab:CreateSection("Me")
 
-local Slider = MeTab:CreateSlider({
-   Name = "Walk Speed",
-   Range = {0, 500},
-   Increment = 10,
-   Suffix = "Walk Speed",
-   CurrentValue = 16,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(SliderValue)
-   game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = SliderValue
-   end,
-})
+    MeTab:CreateSlider({
+       Name = "Walk Speed",
+       Range = {0, 500},
+       Increment = 10,
+       Suffix = "Walk Speed",
+       CurrentValue = 16,
+       Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+       Callback = function(SliderValue1)
+           game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = SliderValue1
+       end,
+    })
 
-local Slider = MeTab:CreateSlider({
-   Name = "Jump Power",
-   Range = {0, 500},
-   Increment = 10,
-   Suffix = "Jump power",
-   CurrentValue = 16,
-   Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(SliderValue1)
-   game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = SliderValue1
-   end,
-})
-
+    MeTab:CreateSlider({
+       Name = "Jump Power",
+       Range = {0, 500},
+       Increment = 10,
+       Suffix = "Jump power",
+       CurrentValue = 16,
+       Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+       Callback = function(SliderValue3)
+           game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = SliderValue3
+       end,
+    })
 end
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
@@ -266,7 +266,7 @@ local Window = Rayfield:CreateWindow({
         RememberJoins = true -- Set this to false to make them join the discord every time they load it up
     },
     KeySystem = true, -- Set this to true to use our key system
-setclipboard("https://pastebin.com/raw/UpU3RBtK")
+    setclipboard("https://pastebin.com/raw/UpU3RBtK"),
     KeySettings = {
         Title = "Key System",
         Subtitle = "Get Key to Unlock MoonCheat",
