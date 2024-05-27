@@ -244,6 +244,30 @@ function Raise()
            game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").JumpPower = SliderValue3
        end,
     })
+
+local ETab = Window:CreateTab("ESP", 1)
+ETab:CreateSection("ESP")
+
+ETab:CreateToggle({
+        Name = "Floppa",
+        CurrentValue = false,
+        Flag = "Toggle00",
+        Callback = function(Val)
+        getgenv().ES = Instance.new("Highlight")
+if Val then
+    ES.Name = 'ESPF'
+    ES.FillColor = Color3.fromRGB(255, 255, 255)
+    ES.FillTransparency = 0.3
+    ES.OutlineColor = Color3.fromRGB(255, 255, 255)
+    ES.OutlineTransparency = 0.3
+    ES.Parent = game.Workspace.Floppa
+else
+if game.Workspace.Floppa:FindFirstChild('ESPF') then
+game.Workspace.Floppa:FindFirstChild('ESPF'):Destroy()
+end
+end
+        end
+    })
 end
 
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/main/source.lua'))()
